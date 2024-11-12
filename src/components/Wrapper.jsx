@@ -10,11 +10,11 @@ const Wrapper = ({children, setIsAuth}) => {
   return (
     <div>
         <div className="flex justify-between items-center fixed w-full top-0 left-0 px-4 text-white z-10 py-2">
+          <ProfileDropdownMenu changeIsAuth={setIsAuth}/>
+        <h1 className="brand-name text-6xl text-center">Taggi</h1>
         <div className="bellIcon" onClick={() => setActiveBell(!activeBell)}>
           {activeBell ? activeBellIcon : inActiveBellIcon}
         </div>
-        <h1 className="brand-name text-6xl text-center">Taggi</h1>
-        <ProfileDropdownMenu changeIsAuth={setIsAuth}/>
       </div>
       <div>{children}</div>
     </div>

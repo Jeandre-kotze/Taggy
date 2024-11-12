@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+import { getAnalytics } from "firebase/analytics";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -16,8 +17,8 @@ const firebaseConfig = {
   projectId: "fir-project-dd013",
   storageBucket: "fir-project-dd013.appspot.com",
   messagingSenderId: "149944648638",
-  appId: "1:149944648638:web:b8fed18a7c23040057efef",
-  measurementId: "G-ZMKQTT4S39"
+  appId: "1:149944648638:web:1f8149e579fdf91957efef",
+  measurementId: "G-M18H06JMJZ"
 };
 
 // Initialize Firebase
@@ -27,3 +28,4 @@ export const googleProvider = new GoogleAuthProvider();
 
 export const db = getFirestore(app);
 export const storage = getStorage(app);
+const analytics = getAnalytics(app);

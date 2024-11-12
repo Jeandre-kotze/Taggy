@@ -34,8 +34,8 @@ const GamePage = () => {
   return (
     <Wrapper>
       <PhotoModal ref={dialog}/>
-      <div className="flex flex-col justify-center items-center">
-        <h2>{`${tagged} is Tagged`}</h2>
+      <div className="flex flex-col justify-between items-center h-full gap-4">
+        <h2 className="text-xl" >{`${tagged} is tagged`}</h2>
         {!tagged ? <p>{profileCaptureIcon}</p> : <img src={tagged} alt="" />}
         <button type="button" onClick={handleShowModal} className="take-a-photo">Tag a friend</button>
       </div>

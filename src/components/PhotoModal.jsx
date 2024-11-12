@@ -4,7 +4,7 @@ import { cancelIcon } from './icons';
 import CameraSwitcher from './CameraSwitcher';
 
 
-const PhotoModal = forwardRef(function PhotoModal({photoTaken}, ref) {
+const PhotoModal = forwardRef(function PhotoModal({ photoTaken }, ref) {
 
   const dialog = useRef();
   const [isOpen, setIsOpen] = useState(false);
