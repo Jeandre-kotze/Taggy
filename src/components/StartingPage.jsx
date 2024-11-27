@@ -1,18 +1,16 @@
-import { useState } from 'react'
 import HomePage from './HomePage'
 import Auth from './Auth'
-import Cookies from 'universal-cookie'
 import Wrapper from './Wrapper'
+import { useSelector } from "react-redux"
 
-const cookies = new Cookies()
 
 const StartingPage = () => {
 
-    const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
-    console.log(isAuth)
+    const isAuth = useSelector(state => state.auth.loggedIn);
+    console.log(isAuth);
 
-   return <Wrapper setIsAuth={setIsAuth}>
-    { isAuth ? <HomePage /> : <Auth setIsAuth={setIsAuth}/>}
+   return <Wrapper title="Taggi" position="fixed">
+    { isAuth ? <HomePage /> : <Auth />}
    </Wrapper>
 }
 

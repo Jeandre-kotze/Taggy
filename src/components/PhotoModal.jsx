@@ -25,7 +25,7 @@ const PhotoModal = forwardRef(function PhotoModal({ photoTaken }, ref) {
   return isOpen ? createPortal(
     <div className='h-full'>
       <dialog className="flex modal flex-col gap-2 rounded-lg
-       bg-white h-4/5 w-[20rem] fixed max-w-3/4 mt-20 py-4 px-6" ref={dialog}>
+       bg-white h-full w-full sm:h-4/5 sm:w-[20rem] fixed sm:max-w-3/4 mt-20 py-4 px-6" ref={dialog}>
         <div className="flex justify-between align-baseline">
         <button className='h-5 w-5' onClick={() => setIsFrontCamera(prev => !prev)}>
             <img src="/switch-camera.png" alt="" />

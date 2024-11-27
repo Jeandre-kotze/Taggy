@@ -1,7 +1,6 @@
 {
   "hosting": {
     "public": "public",
-    "site": "mytaggyappio",
     "ignore": [
       "firebase.json",
       "**/.*",

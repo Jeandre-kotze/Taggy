@@ -5,16 +5,19 @@ import googleLogo from "/search.png"; // Ensure this path is correct
 import Cookie from "universal-cookie";
 import PhotoModal from './PhotoModal.jsx';
 import { uploadBytes } from 'firebase/storage';
+import { useDispatch } from 'react-redux';
+import { setLoggedIn } from '../store/LoginSlice.js';
 
-// eslint-disable-next-line react/prop-types
-const Auth = ({ setIsAuth }) => {
+const Auth = () => {
+  
   const [formState, setFormState] = useState({
     email: '',
     password: '',
     rememberUser: false,
-    loginState: false, // `true` for login, `false` for sign up
+    loginState: true, // `true` for login, `false` for sign up
   });
   const cookie = new Cookie();
+  const dispatch = useDispatch();
 
   const { email, password, rememberUser, loginState } = formState;
 
@@ -56,7 +59,7 @@ const Auth = ({ setIsAuth }) => {
         : await createUserWithEmailAndPassword(auth, email.trim(), password.trim());
   
       setAuthCookie(status.user.refreshToken);
-      setIsAuth(true);
+      dispatch(setLoggedIn(true));
     } catch (error) {
       console.error("Error with authentication:", error);
       alert(error.message); // Firebase error message
@@ -69,7 +72,7 @@ const Auth = ({ setIsAuth }) => {
       const status = await signInWithPopup(auth, googleProvider);
       if (status?.user?.refreshToken) {
         setAuthCookie(status.user.refreshToken);
-        setIsAuth(true);
+        dispatch(setLoggedIn(true));
       }
     } catch (error) {
       console.error("Error with Google login:", error);

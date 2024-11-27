@@ -1,9 +1,27 @@
-import { collection, addDoc, deleteDoc, updateDoc, doc } from "firebase/firestore";
-import { db } from './firebase.js';
-import { auth } from "./firebase.js";
+import { doc } from "firebase/firestore";
+import { db, storage, auth } from './firebase.js';
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { setDoc, arrayUnion } from "firebase/firestore";
 
-const groups = collection(db, "groups");
+// Function to upload photo and add tags
+export async function uploadPhoto(file, tags) {
+  const storageRef = ref(storage, 'images/'+ auth.currentUser.uid + file.name);
+  await uploadBytes(storageRef, file);
+  
+  const imageUrl = await getDownloadURL(storageRef);  // Get the download URL
 
+  // Add metadata and tags to Firestore
+  const photoDocRef = doc(db, "photos", file.name);
+  await setDoc(photoDocRef, {
+    imageUrl: imageUrl,
+    tags: arrayUnion(...tags)
+  });
+}
+
+
+
+
+/*
 // Create Group
 export async function createGroup(groupName) {
     try {
@@ -77,7 +95,7 @@ export async function deleteGroup(groupId) {
     } catch (e) {
         console.error("Error deleting group: ", e);
     }
-}
+} */
 
     
 

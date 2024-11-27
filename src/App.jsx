@@ -1,13 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import StartingPage from "./components/StartingPage.jsx";
-import TokenStore from "./components/TokenStore.jsx";
-import GamePage from "./components/GamePage.jsx";
+import AddPhotoPage from "./components/AddPhotoPage.jsx";
+import ShowPhotos from "./components/ShowPhotos.jsx";
 
 const router = createBrowserRouter([
   { path: '/', element: <StartingPage /> },
-  {path: '/store', element: <TokenStore />},
-  {path: 'group/:groupName/:groupCode', element: <GamePage />}
-
+  {path: 'photo/add/:userCode', element: <AddPhotoPage />},
+  {path: 'photo/show/:userCode', element: <ShowPhotos />}
 ]);
 
 function App() {

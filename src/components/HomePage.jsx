@@ -1,23 +1,18 @@
-import { useRef } from "react"
-import JoinModal from "./JoinModal";
-import CreateModal from "./CreateModal";
-
+import { Link } from "react-router-dom"
+import { auth } from "../config/firebase"
 const HomePage = () => {
 
-  const joinDialog = useRef();
-  const createDialog = useRef();
-
 return (
-    <div className="HomePage-background">
-      <div className="PhotoModal">
-      <CreateModal ref={createDialog} />
-      <JoinModal ref={joinDialog} />
-      </div>
-      <div className="HomePage">
-        <img src="" alt="Animated girl" className="HomePage-photo"/>
+    <div className="w-full h-full relative">
+      <div className="flex gap-3 flex-col mt-2 w-full h-full items-center justify-center">
+      <img src="/taggiLogo.webp" alt="Animated girl" className="HomePage-photo"/>
         {/*<button type="button" onClick={handleShowModal} className="take-a-photo">Tag a friend</button>*/}
-        <button type="button" onClick={() => createDialog.current.open()} className="take-a-photo">Create Group</button>
-        <button type="button" onClick={() => joinDialog.current.open()} className="take-a-photo">Join Group</button>
+        <Link to={"photo/show/" +  auth?.currentUser?.uid}>
+          <button className="font-semibold text-lg hover:text-white hover:bg-blue-500 w-60 h-12 rounded-lg outline outline-3 outline-blue-500 text-blue-500">My Library</button>
+        </Link>
+        <Link to={"photo/add/" + auth?.currentUser?.uid}>
+          <button className="font-semibold  text-lg hover:text-white hover:bg-blue-500 w-60 h-12 rounded-lg outline outline-3 outline-blue-500 text-blue-500">Quick add</button>
+        </Link>
       </div>
     </div>
   )
